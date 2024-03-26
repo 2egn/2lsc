@@ -11,6 +11,8 @@ import java.awt.Toolkit;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class SelectDate extends JFrame {
 
@@ -20,6 +22,7 @@ public class SelectDate extends JFrame {
 	 * Create the frame.
 	 */
 	String filepath = System.getProperty("user.dir");
+	
 	public SelectDate(JFrame parentform) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SelectDate.class.getResource("/datafiles/\uB9C8\uC774\uD06C.png")));
 		setTitle("\uB0A0\uC9DC \uC120\uD0DD");
@@ -37,6 +40,14 @@ public class SelectDate extends JFrame {
 		
 		ImageIcon homeimage = new ImageIcon(filepath+"/src/datafiles/∏ﬁ¿Œ.png");
 		JLabel homelabel = new JLabel(imagesizeset(homeimage, 96, 47));
+		homelabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				parentform.setVisible(true);
+				//TODO send date data to userinfo/regipage
+				dispose();
+			}
+		});
 		homelabel.setBounds(379, 0, 96, 47);
 		contentPane.add(homelabel);
 		
@@ -50,4 +61,5 @@ public class SelectDate extends JFrame {
 		ImageIcon finalimg = new ImageIcon(updatedimg);
 		return finalimg;
 	}
+	
 }

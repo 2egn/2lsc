@@ -107,7 +107,11 @@ public class MainPage extends JFrame {
 		regibtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new RegiPage(currentform).setVisible(true);
+				if(isLogin) {
+					new UserInfo(currentform).setVisible(true);
+				}else {
+					new RegiPage(currentform).setVisible(true);
+				}
 				setVisible(false);
 			}
 		});
@@ -116,7 +120,12 @@ public class MainPage extends JFrame {
 		
 		regibtn.setBounds(128, 60, 110, 42);
 		contentPane.add(regibtn);
-		
+		searchbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SearchMusic(currentform).setVisible(true);
+				setVisible(false);
+			}
+		});
 		searchbtn.setEnabled(false);
 		searchbtn.setBounds(241, 60, 110, 42);
 		contentPane.add(searchbtn);	
@@ -143,12 +152,12 @@ public class MainPage extends JFrame {
 				musiclist.add(new music(rs.getInt(1),rs.getString(2),rs.getBoolean(3)));
 			}
 			rs.close();
-			rs = ex.ExecuteReadQuery("SELECT music.m_no, COUNT(playlist.m_no) AS listen_count\r\n"
-					+ "FROM music\r\n"
-					+ "INNER JOIN playlist ON music.m_no = playlist.m_no\r\n"
-					+ "GROUP BY music.m_no\r\n"
-					+ "ORDER BY listen_count DESC\r\n"
-					+ "LIMIT 5;");
+			rs = ex.ExecuteReadQuery("SELECT music.m_no, COUNT(playlist.m_no) AS listen_count"
+					+ " FROM music"
+					+ " INNER JOIN playlist ON music.m_no = playlist.m_no"
+					+ " GROUP BY music.m_no"
+					+ " ORDER BY listen_count DESC"
+					+ " LIMIT 5;");
 			int rankindex = 0;
 			while(rs.next()) {
 				rank[rankindex++] = rs.getInt(1);

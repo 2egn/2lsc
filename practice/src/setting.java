@@ -25,7 +25,7 @@
 						+ "  `m_img` longblob,\r\n"
 						+ "  PRIMARY KEY (`m_no`)\r\n"
 						+ ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
-				executor.ExecuteSettingQuery("LOAD DATA LOCAL INFILE '"+path+"\\\\datafiles\\\\music.txt'"
+				executor.ExecuteSettingQuery("LOAD DATA LOCAL INFILE '"+path+"\\\\src\\\\datafiles\\\\music.txt'"
 						+ "INTO TABLE `music`"
 						+ "FIELDS TERMINATED BY '\\t'"
 						+ "LINES TERMINATED BY '\\n'"
@@ -38,7 +38,7 @@
 						+ "  `birth` date DEFAULT NULL COMMENT '생년월일',\r\n"
 						+ "  PRIMARY KEY (`u_no`)\r\n"
 						+ ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
-				executor.ExecuteSettingQuery("LOAD DATA LOCAL INFILE '"+path+"\\\\datafiles\\\\user.txt'"
+				executor.ExecuteSettingQuery("LOAD DATA LOCAL INFILE '"+path+"\\\\\\\\src\\\\datafiles\\\\user.txt'"
 						+ "INTO TABLE `user`"
 						+ "FIELDS TERMINATED BY '\\t'"
 						+ "LINES TERMINATED BY '\\n'"
@@ -53,7 +53,7 @@
 						+ "  CONSTRAINT `p_m_no` FOREIGN KEY (`m_no`) REFERENCES `music` (`m_no`),\r\n"
 						+ "  CONSTRAINT `p_u_no` FOREIGN KEY (`u_no`) REFERENCES `user` (`u_no`)\r\n"
 						+ ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
-				executor.ExecuteSettingQuery("LOAD DATA LOCAL INFILE '"+path+"\\\\datafiles\\\\playlist.txt'"
+				executor.ExecuteSettingQuery("LOAD DATA LOCAL INFILE '"+path+"\\\\\\\\src\\\\datafiles\\\\playlist.txt'"
 						+ "INTO TABLE `playlist`"
 						+ "FIELDS TERMINATED BY '\\t'"
 						+ "LINES TERMINATED BY '\\n'"
@@ -68,7 +68,7 @@
 						+ "  KEY `l_p_no_idx` (`p_no`),\r\n"
 						+ "  CONSTRAINT `l_p_no` FOREIGN KEY (`p_no`) REFERENCES `playlist` (`p_no`)\r\n"
 						+ ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
-				executor.ExecuteSettingQuery("LOAD DATA LOCAL INFILE '"+path+"\\\\datafiles\\\\listenlist.txt'"
+				executor.ExecuteSettingQuery("LOAD DATA LOCAL INFILE '"+path+"\\\\\\\\src\\\\datafiles\\\\listenlist.txt'"
 						+ "INTO TABLE `listenlist`"
 						+ "FIELDS TERMINATED BY '\\t'"
 						+ "LINES TERMINATED BY '\\n'"
