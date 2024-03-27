@@ -28,7 +28,6 @@ public class user {
 		int tempage = nowdate.getYear()-birthdate.getYear();
 		if(birthdate.isAfter(nowdate.minusYears(tempage))) tempage--;
 		age = tempage;
-		System.out.println(age);
 	}
 	
 }
