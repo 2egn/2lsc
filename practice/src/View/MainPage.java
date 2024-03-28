@@ -129,6 +129,11 @@ public class MainPage extends JFrame {
 		searchbtn.setEnabled(false);
 		searchbtn.setBounds(241, 60, 110, 42);
 		contentPane.add(searchbtn);	
+		mypagebtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MyPage(currentform).setVisible(true);;
+			}
+		});
 		
 		mypagebtn.setEnabled(false);
 		mypagebtn.setBounds(354, 60, 110, 42);
@@ -208,7 +213,7 @@ public class MainPage extends JFrame {
 				public void mouseClicked(MouseEvent e) {
 					// TODO Auto-generated method stub
 					if(isLogin) {
-						new musicdetail(j+1,currentform).setVisible(true);
+						new musicdetail(j+1,currentform,currentform).setVisible(true);
 						setVisible(false);
 					}
 					

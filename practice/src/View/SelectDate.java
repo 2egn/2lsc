@@ -13,6 +13,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class SelectDate extends JFrame {
 
@@ -23,10 +25,16 @@ public class SelectDate extends JFrame {
 	 */
 	String filepath = System.getProperty("user.dir");
 	
-	public SelectDate(JFrame parentform) {
+	public SelectDate(JFrame parentform, JFrame mainform) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				parentform.setVisible(true);
+			}
+		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SelectDate.class.getResource("/datafiles/\uB9C8\uC774\uD06C.png")));
 		setTitle("\uB0A0\uC9DC \uC120\uD0DD");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
 		setBounds(100, 100, 543, 469);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

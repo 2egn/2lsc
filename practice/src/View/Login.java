@@ -18,6 +18,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Login extends JFrame {
 
@@ -30,12 +32,18 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login(MainPage parentform) {
+			addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent e) {
+					parentform.setVisible(true);
+				}
+			});
 		setTitle("\uB85C\uADF8\uC778");
 		Logincontroller.Init();
 		Login currentform = this;
 		Logincontroller.login = currentform;
 		String filepath = System.getProperty("user.dir");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,7 +75,7 @@ public class Login extends JFrame {
 		pwbox.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new favsong(currentform).setVisible(true);
+				new favsong(currentform,parentform).setVisible(true);
 				setVisible(false);
 			}
 		});

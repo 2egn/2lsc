@@ -22,6 +22,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.Icon;
 import java.awt.Window.Type;
 import javax.swing.JButton;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class UserInfo extends JFrame {
 
@@ -37,11 +39,17 @@ public class UserInfo extends JFrame {
 	private JTextField textField_1;
 	public JTextField pwbox;
 	public UserInfo(MainPage parentform) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				parentform.setVisible(true);
+			}
+		});
 		UserInfo currentform = this;
 		RegisterController.Init();
 		setTitle("\uD68C\uC6D0\uC815\uBCF4");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(UserInfo.class.getResource("/datafiles/\uB9C8\uC774\uD06C.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 327);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -109,7 +117,7 @@ public class UserInfo extends JFrame {
 		lblNewLabel_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new SelectDate(parentform).setVisible(true);
+				new SelectDate(currentform,parentform).setVisible(true);
 				setVisible(false);
 			}
 		});
@@ -121,7 +129,7 @@ public class UserInfo extends JFrame {
 		pwlabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new SelectDate(parentform).setVisible(true);
+				new favsong(currentform,parentform).setVisible(true);
 				setVisible(false);
 			}
 		});

@@ -30,6 +30,8 @@ import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class favsong extends JFrame {
 
@@ -41,12 +43,18 @@ public class favsong extends JFrame {
 	 * Create the frame.
 	 */
 	JFrame parentform;
-	public favsong(JFrame parentform) {
+	public favsong(JFrame parentform, JFrame mainform) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				parentform.setVisible(true);
+			}
+		});
 		this.parentform = parentform;
 		setTitle("\uC120\uD638 POP SONG");
 		SQLExecutor ex = new SQLExecutor();
 		String filepath = System.getProperty("user.dir");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 594, 491);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

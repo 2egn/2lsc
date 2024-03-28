@@ -45,7 +45,13 @@ public class musicdetail extends JFrame {
 	String filepath = System.getProperty("user.dir");
 	JProgressBar progressBar = new JProgressBar();
 	boolean musicplaying = false;
-	public musicdetail(int m_no,MainPage parentform) {
+	public musicdetail(int m_no,MainPage mainform,JFrame parentform) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				parentform.setVisible(true);
+			}
+		});
 		setTitle("\uC74C\uC6D0\uC0C1\uC138\uC815\uBCF4");
 		SQLExecutor ex = new SQLExecutor();
 		String m_name = "";
@@ -73,7 +79,7 @@ public class musicdetail extends JFrame {
 			e.printStackTrace();
 		}
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 639, 442);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -95,7 +101,7 @@ public class musicdetail extends JFrame {
 		homeimagelabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				parentform.setVisible(true);
+				mainform.setVisible(true);
 				dispose();
 			}
 		});

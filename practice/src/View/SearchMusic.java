@@ -36,6 +36,8 @@ import model.user;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 public class SearchMusic extends JFrame {
 
 	private JPanel contentPane;
@@ -50,11 +52,19 @@ public class SearchMusic extends JFrame {
 	JScrollPane scrollPane = new JScrollPane();
 	GridLayout gridlayout = new GridLayout(0,5);
 	JFrame parentform;
+	JFrame currentform;
 	public SearchMusic(JFrame parentform) {
+		this.currentform = this;
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				parentform.setVisible(true);
+			}
+		});
 		this.parentform = parentform;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SearchMusic.class.getResource("/datafiles/\uB9C8\uC774\uD06C.png")));
 		setTitle("\uC74C\uC6D0\uAC80\uC0C9");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 576, 526);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -270,7 +280,7 @@ public class SearchMusic extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				new musicdetail(no, (MainPage)parentform).setVisible(true);
+				new musicdetail(no, (MainPage)parentform,currentform).setVisible(true);
 				setVisible(false);
 			}
 		});

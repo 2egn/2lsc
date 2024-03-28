@@ -53,7 +53,7 @@
 						+ "  CONSTRAINT `p_m_no` FOREIGN KEY (`m_no`) REFERENCES `music` (`m_no`),\r\n"
 						+ "  CONSTRAINT `p_u_no` FOREIGN KEY (`u_no`) REFERENCES `user` (`u_no`)\r\n"
 						+ ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
-				executor.ExecuteSettingQuery("LOAD DATA LOCAL INFILE '"+path+"\\\\\\\\src\\\\datafiles\\\\playlist.txt'"
+				executor.ExecuteSettingQuery("LOAD DATA LOCAL INFILE '"+path+"\\\\src\\\\datafiles\\\\playlist.txt'"
 						+ "INTO TABLE `playlist`"
 						+ "FIELDS TERMINATED BY '\\t'"
 						+ "LINES TERMINATED BY '\\n'"
